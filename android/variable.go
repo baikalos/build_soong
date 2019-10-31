@@ -20,7 +20,7 @@ import (
 	"runtime"
 	"strings"
 
-	"aicp/soong/android"
+	"baikalos/soong/android"
 
 	"github.com/google/blueprint/proptools"
 )
@@ -127,8 +127,8 @@ type variableProperties struct {
 			Srcs         []string
 		}
 
-		// include Aicp variables
-		Aicp android.Product_variables
+		// include Baikalos variables
+		Baikalos android.Product_variables
 	} `android:"arch_variant"`
 }
 
@@ -293,8 +293,8 @@ type productVariables struct {
 
 	TargetFSConfigGen []string `json:",omitempty"`
 
-	// include Aicp variables
-	Aicp android.ProductVariables
+	// include Baikalos variables
+	Baikalos android.ProductVariables
 }
 
 func boolPtr(v bool) *bool {
