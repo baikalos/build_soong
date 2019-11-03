@@ -129,6 +129,7 @@ type ModuleContext interface {
 	AddMissingDependencies(deps []string)
 
 	InstallInData() bool
+	InstallInTestcases() bool
 	InstallInSanitizerDir() bool
 	InstallInRecovery() bool
 
@@ -185,6 +186,7 @@ type Module interface {
 	Enabled() bool
 	Target() Target
 	InstallInData() bool
+	InstallInTestcases() bool
 	InstallInSanitizerDir() bool
 	InstallInRecovery() bool
 	SkipInstall()
@@ -302,6 +304,9 @@ type commonProperties struct {
 	SkipInstall bool `blueprint:"mutated"`
 
 	NamespaceExportedToMake bool `blueprint:"mutated"`
+
+	// Whether this module provides a boot jar
+	BootJarProvider bool `blueprint:"mutated"`
 }
 
 type hostAndDeviceProperties struct {
@@ -519,6 +524,10 @@ func (a *ModuleBase) Name() string {
 	return String(a.nameProperties.Name)
 }
 
+func (a *ModuleBase) BootJarProvider() bool {
+	return a.commonProperties.BootJarProvider
+}
+
 // BaseModuleName returns the name of the module as specified in the blueprints file.
 func (a *ModuleBase) BaseModuleName() string {
 	return String(a.nameProperties.Name)
@@ -653,6 +662,10 @@ func (p *ModuleBase) NoAddressSanitizer() bool {
 }
 
 func (p *ModuleBase) InstallInData() bool {
+	return false
+}
+
+func (p *ModuleBase) InstallInTestcases() bool {
 	return false
 }
 
@@ -1250,6 +1263,10 @@ func (a *ModuleBase) MakeAsPlatform() {
 
 func (a *androidModuleContext) InstallInData() bool {
 	return a.module.InstallInData()
+}
+
+func (a *androidModuleContext) InstallInTestcases() bool {
+	return a.module.InstallInTestcases()
 }
 
 func (a *androidModuleContext) InstallInSanitizerDir() bool {
