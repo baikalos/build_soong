@@ -55,7 +55,7 @@ var (
 		"cortex-a75": []string{
 			// Use the cortex-a55 since it is similar to the little
 			// core (cortex-a55) and is sensitive to ordering.
-			"-mcpu=cortex-a55",
+			"-mcpu=cortex-a57",
 		},
 		"kryo": []string{
 			// Use the cortex-a57 cpu since some compilers
