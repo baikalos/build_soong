@@ -81,6 +81,7 @@ var Configuration = map[string]PathConfig{
 	"curl":    Allowed,
 	"ccache":    Allowed,
 
+        "convert":    Allowed,
 	"date":     Allowed,
 	"dd":       Allowed,
 	"diff":     Allowed,

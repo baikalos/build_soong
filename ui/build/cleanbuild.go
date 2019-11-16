@@ -41,15 +41,49 @@ func removeGlobs(ctx Context, globs ...string) {
 	}
 }
 
+
 // Remove everything under the out directory. Don't remove the out directory
 // itself in case it's a symlink.
 func clean(ctx Context, config Config, what int) {
 	removeGlobs(ctx, filepath.Join(config.OutDir(), "*"))
 	ctx.Println("Entire build directory removed.")
 }
-
 func dataClean(ctx Context, config Config, what int) {
 	removeGlobs(ctx, filepath.Join(config.ProductOut(), "data", "*"))
+}
+
+// Remove everything under the target/product directory. Don't remove the
+// common directory.
+func productClean(ctx Context, config Config, what int) {
+	removeGlobs(ctx, filepath.Join(config.TargetDir(), "*"))
+	ctx.Println("Entire target directory removed.")
+}
+
+// Remove everything relevant for a clean ota package
+func deviceClean(ctx Context, config Config, what int) {
+
+	productOutPath := config.ProductOut()
+	productOut := func(path string) string {
+		return filepath.Join(productOutPath, path)
+	}
+
+	removeGlobs(ctx,
+		productOut("*.cpio"),
+		productOut("*.img"),
+		productOut("*.zip"),
+		productOut("*.zip.md5sum"),
+		productOut("android-info.txt"),
+		productOut("Changelog.txt"),
+		productOut("kernel"),
+		productOut("ramdisk"),
+		productOut("recovery"),
+		productOut("root"),
+		productOut("symbols"),
+		productOut("system"),
+		productOut("system_other"),
+		productOut("vendor"))
+
+	ctx.Println("Device specific stuff removed.")
 }
 
 // installClean deletes all of the installed files -- the intent is to remove
