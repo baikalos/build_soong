@@ -77,6 +77,10 @@ var Configuration = map[string]PathConfig{
 	"bash":     Allowed,
 	"bc":       Allowed,
 	"bzip2":    Allowed,
+
+	"curl":    Allowed,
+	"ccache":    Allowed,
+
         "convert":    Allowed,
 	"date":     Allowed,
 	"dd":       Allowed,
@@ -87,6 +91,8 @@ var Configuration = map[string]PathConfig{
 	"flock":    Allowed,
 	"curl":	    Allowed,
 	"fuser":    Allowed,
+
+	"flock":    Allowed,
 	"getopt":   Allowed,
 	"git":      Allowed,
 	"grep":     Allowed,
@@ -116,6 +122,9 @@ var Configuration = map[string]PathConfig{
 	"zip":      Allowed,
 	"zipinfo":  Allowed,
 
+	"perl":     Allowed,
+	"pkg-config": Allowed,
+
 	// Host toolchain is removed. In-tree toolchain should be used instead.
 	// GCC also can't find cc1 with this implementation.
 	"ar":         Forbidden,
@@ -128,7 +137,7 @@ var Configuration = map[string]PathConfig{
 	"ld":         Forbidden,
 	"ld.bfd":     Forbidden,
 	"ld.gold":    Forbidden,
-	"pkg-config": Forbidden,
+	// "pkg-config": Forbidden,
 
 	// On Linux we'll use the toybox versions of these instead.
 	"basename":  LinuxOnlyPrebuilt,
