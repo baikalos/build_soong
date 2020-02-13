@@ -78,7 +78,6 @@ var Configuration = map[string]PathConfig{
 	"bc":       Allowed,
 	"bzip2":    Allowed,
 
-	"curl":    Allowed,
 	"ccache":    Allowed,
 
         "convert":    Allowed,
@@ -92,7 +91,6 @@ var Configuration = map[string]PathConfig{
 	"curl":	    Allowed,
 	"fuser":    Allowed,
 
-	"flock":    Allowed,
 	"getopt":   Allowed,
 	"git":      Allowed,
 	"grep":     Allowed,
